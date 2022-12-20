@@ -1,21 +1,34 @@
 // Your code here
 
-let objGlobal;
 
-// displaying nodes
- const nameDisplay = document.querySelector("#name");
- const imgDisplay = document.querySelector("#image");
- const voteCountDisplay = document.querySelector("#vote-count");
+document.addEventListener("DOMContentLoaded", () => {
+    fetchAnimals ();
 
- //form submission
-const addVotesForm = document.querySelector("#votes-form");
-const votesInputBox = document.querySelector("#votes");
+});
+
+function fetchAnimals() {
+    fetch('http://localhost:3000/characters')
+    .then(resp => resp.json())
+    .then(characterBar)
+}
+
+function characterBar(characters) {
+    characters.forEach(barDetails)
+}
+function barDetails(character) {
+    const characterId = character.imgDisplay//const characterName = character.name
+    const characterImage = character.image
+    const characterVotes = character.votes
+    const bar = document.querySelector('#character-bar')
+    barSpan.innerHTML = character.name
+    bar.appendChild(barSpan)
+
 // API END POINT
 const uri = "http://localhost:3000/characters"
 
 const characterBarContainer = document.querySelector("#character-bar");
 
-fetch(uri)
+fetch(url)
     .then((response) => response.json())
     .then((data) => {
         console.log("Succes:", data);
